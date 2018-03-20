@@ -14,7 +14,7 @@ function connect() {
 }
 
 function addTweet(tweet) {
-    $("#resultsBlock").append(Mustache.render(template, JSON.parse(tweet.body)));
+    $("#resultsBlock").prepend(Mustache.render(template, JSON.parse(tweet.body)));
     console.log("Tweet added")
 }
 
