@@ -13,17 +13,13 @@ import java.util.List;
 
 @Service
 public class TwitterLookupService {
-    @Value("${twitter.consumerKey}")
-    private String consumerKey;
+    private String consumerKey = System.getenv("consumerKey");
 
-    @Value("${twitter.consumerSecret}")
-    private String consumerSecret;
+    private String consumerSecret = System.getenv("consumerSecret");
 
-    @Value("${twitter.accessToken}")
-    private String accessToken;
+    private String accessToken = System.getenv("accessToken");
 
-    @Value("${twitter.accessTokenSecret}")
-    private String accessTokenSecret;
+    private String accessTokenSecret = System.getenv("accessTokenSecret");
 
 
     @Autowired
