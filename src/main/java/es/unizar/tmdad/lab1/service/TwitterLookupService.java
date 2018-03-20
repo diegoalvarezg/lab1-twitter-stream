@@ -29,12 +29,20 @@ public class TwitterLookupService {
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
+    private ArrayList<String> queries = new ArrayList<>();
+    List<StreamListener> twitterList = new ArrayList<StreamListener>();
+    Stream s;
+
+
     public void search(String q) {
 
         Twitter twitter = new TwitterTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);
-        List<StreamListener> twitterList = new ArrayList<StreamListener>();
+        if (queries.size() >= 10) {
+            queries.remove(0);
+            twitterList.remove(0);
+        }
         twitterList.add(new SimpleStreamListener(messagingTemplate, q));
-        Stream s = twitter.streamingOperations().filter(q, twitterList);
+        s = twitter.streamingOperations().filter(q, twitterList);
 
     }
 
